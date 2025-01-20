@@ -34,4 +34,23 @@ function printExhaustiveFolderContent(folder) {
   }
 }
 
-export { printExhaustiveFolderContent };
+function printExhaustiveFolderContentUsingRecursion(
+  folder,
+  depth = 0,
+  isRoot = true,
+) {
+  if (folder?.content && Array.isArray(folder.content)) {
+    printFolder(folder, isRoot, depth);
+
+    folder.content.forEach((child) => {
+      printExhaustiveFolderContentUsingRecursion(child, depth + 1, false);
+    });
+  } else {
+    printFile(folder, depth);
+  }
+}
+
+export {
+  printExhaustiveFolderContent,
+  printExhaustiveFolderContentUsingRecursion,
+};
