@@ -1,0 +1,30 @@
+/* src\css\app.css */
+
+details {
+  margin: 0.2rem 0;
+}
+
+details:not([open]) > ul {
+  display: none;
+}
+
+details > summary {
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.chevron-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 150ms ease-in;
+}
+
+details[open] > summary .chevron-icon {
+  transform: rotate(90deg);
+}
