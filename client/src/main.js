@@ -1,4 +1,4 @@
-// src\main.js
+// client\src\main.js
 
 import { waitForLoadingOfDomContent } from "./javascript/events/listeners.js";
 
