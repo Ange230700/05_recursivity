@@ -1,4 +1,4 @@
-// src\javascript\events\listeners.js
+// client\src\javascript\events\listeners.js
 
 import { handleLoadingOfDomContent } from "./handlers.js";
 

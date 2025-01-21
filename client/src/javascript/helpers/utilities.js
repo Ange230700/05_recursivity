@@ -1,4 +1,4 @@
-// src\javascript\helpers\utilities.js
+// client\src\javascript\helpers\utilities.js
 
 function printFolder(folder, isRoot = false, depth = 0) {
   const indent = "  ".repeat(depth);

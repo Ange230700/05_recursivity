@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "dev": "nodemon index.cjs",
+    "start": "node index.cjs",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "clean": "rm -rf ./node_modules/ ./package-lock.json",
+    "reboot": "rm -rf ./node_modules/ ./package-lock.json && npm install",
+    "lint": "eslint . --cache --fix"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.12.0",
+    "nodemon": "^3.1.4",
+    "onchange": "^7.1.0",
+    "prettier": "3.2.5"
+  }
+}
