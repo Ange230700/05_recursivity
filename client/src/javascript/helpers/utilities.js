@@ -1,56 +1,19 @@
 // client\src\javascript\helpers\utilities.js
 
-function printFolder(folder, isRoot = false, depth = 0) {
-  const indent = "  ".repeat(depth);
+import { buildFolderStructure } from "../document/manipulation.js";
 
-  if (isRoot) {
-    console.log(`> ${indent}🗂️  ${folder.name}`);
-  } else {
-    console.log(`  ${indent}🗂️  ${folder.name}`);
-  }
+/**
+ * Replaces the old recursive console-based approach by calling the
+ * DOM-based function from 'manipulation.js'.
+ */
+function printExhaustiveFolderContentUsingRecursion(folderData) {
+  // Instead of printing to console, delegate to DOM construction:
+  const appContainer = document.getElementById("app");
+
+  // Clear the container or handle if you prefer
+  appContainer.innerHTML = "";
+
+  buildFolderStructure(folderData, appContainer);
 }
 
-function printFile(file, depth = 0) {
-  const indent = "  ".repeat(depth);
-  console.log(`  ${indent}📑 ${file?.name}`);
-}
-
-function printExhaustiveFolderContent(folder) {
-  const stack = [{ item: folder, depth: 0, isRoot: true }];
-
-  while (stack.length > 0) {
-    const { item: currentItem, depth, isRoot } = stack.pop();
-
-    if (currentItem?.content && Array.isArray(currentItem.content)) {
-      printFolder(currentItem, isRoot, depth);
-
-      for (let index = currentItem.content.length - 1; index >= 0; index--) {
-        const child = currentItem.content[index];
-        stack.push({ item: child, depth: depth + 1, isRoot: false });
-      }
-    } else {
-      printFile(currentItem, depth);
-    }
-  }
-}
-
-function printExhaustiveFolderContentUsingRecursion(
-  folder,
-  depth = 0,
-  isRoot = true,
-) {
-  if (folder?.content && Array.isArray(folder.content)) {
-    printFolder(folder, isRoot, depth);
-
-    folder.content.forEach((child) => {
-      printExhaustiveFolderContentUsingRecursion(child, depth + 1, false);
-    });
-  } else {
-    printFile(folder, depth);
-  }
-}
-
-export {
-  printExhaustiveFolderContent,
-  printExhaustiveFolderContentUsingRecursion,
-};
+export { printExhaustiveFolderContentUsingRecursion };
