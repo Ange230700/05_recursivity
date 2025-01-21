@@ -1,4 +1,4 @@
-// src\javascript\data\mainFolder.js
+// client\src\javascript\data\mainFolder.js
 
 const mainFolder = {
   name: "Ada",

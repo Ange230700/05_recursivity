@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "prepare": "husky",
+    "clean": "rm -rf ./node_modules/ ./package-lock.json",
+    "reboot": "rm -rf ./node_modules/ ./package-lock.json && npm install",
+    "lint": "eslint . --cache --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.14.0",
+    "onchange": "^7.1.0",
+    "prettier": "3.4.2",
+    "vite": "^6.0.5"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  },
+  "validate-branch-name": {
+    "pattern": "^(master|main|development){1}$|^(feature|fix|test|chore|refactor|ci)/.+$",
+    "errorMsg": "Make sure to give a valid branch name."
+  }
+}
