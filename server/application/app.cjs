@@ -18,13 +18,6 @@ app.use("/api", apiRouter);
 // eslint-disable-next-line no-undef
 app.get("*.*", express.static(path.join(__dirname, "..", "..", "public")));
 
-app.get("*", (_, response) => {
-  response.sendFile(
-    // eslint-disable-next-line no-undef
-    path.join(path.join(__dirname, "../../client"), "index.html"),
-  );
-});
-
 app.use(handleErrors);
 
 module.exports = app;
