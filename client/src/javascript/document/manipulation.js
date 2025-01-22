@@ -117,7 +117,7 @@ function showLoadingMessage(appContainer) {
 function showErrorMessage(appContainer, error) {
   // Show an error message in the UI
   appContainer.innerHTML = `
-      <div class="error">
+      <div class="error" style="margin: auto 0;">
         <p>${error.message}</p>
         <p>Failed to load data. Please try again later.</p>
       </div>
