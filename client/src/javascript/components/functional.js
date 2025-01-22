@@ -1,5 +1,13 @@
 // client\src\javascript\components\functional.js
 
+function generateHeader() {
+  return `
+    <header>
+      <h1>Directory tree</h1>
+    </header>
+  `;
+}
+
 function generateFooter() {
   return `
     <footer>
@@ -31,4 +39,4 @@ function generateFooter() {
   `;
 }
 
-export { generateFooter };
+export { generateHeader, generateFooter };
