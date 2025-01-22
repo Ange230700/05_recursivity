@@ -1,6 +1,6 @@
 // src/javascript/document/manipulation.js
 
-import { generateFooter } from "../components/functional.js";
+import { generateHeader, generateFooter } from "../components/functional.js";
 
 /**
  * Builds a DOM structure of nested <details> (accordions) for folder data
@@ -100,17 +100,47 @@ function printExhaustiveFolderContentUsingRecursion(folderData) {
 
   buildFolderStructure(folderData, appContainer);
 
+  appContainer.insertAdjacentHTML("afterbegin", generateHeader());
+
   appContainer.innerHTML += `${generateFooter()}`;
 }
 
+function showLoadingMessage(appContainer) {
+  // Show a basic loading message or spinner
+  appContainer.innerHTML = `
+    <div class="loading" style="margin: auto 0;">
+      <p>Loading folder structure...</p>
+    </div>
+  `;
+}
+
+function showErrorMessage(appContainer, error) {
+  // Show an error message in the UI
+  appContainer.innerHTML = `
+      <div class="error">
+        <p>${error.message}</p>
+        <p>Failed to load data. Please try again later.</p>
+      </div>
+    `;
+}
+
 async function displayApp() {
+  const appContainer = document.getElementById("app");
+
+  showLoadingMessage(appContainer);
+
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/folder`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const folderData = await response.json();
 
     printExhaustiveFolderContentUsingRecursion(folderData);
   } catch (error) {
     console.error("Failed to fetch folder structure:", error);
+    showErrorMessage(appContainer, error);
   }
 }
 

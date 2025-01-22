@@ -1,5 +1,10 @@
 /* src\css\app.css */
 
+header {
+  margin: 1rem 0;
+  margin-bottom: auto;
+}
+
 details {
   margin: 0.2rem 0;
 }
@@ -38,4 +43,29 @@ footer {
 
 footer a {
   text-decoration: dotted underline;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+/* Simple CSS spinner example: */
+.loading::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  border: 2px solid #333;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
