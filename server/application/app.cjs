@@ -21,7 +21,7 @@ app.get("*.*", express.static(path.join(__dirname, "..", "..", "public")));
 app.get("*", (_, response) => {
   response.sendFile(
     // eslint-disable-next-line no-undef
-    path.join(path.join(__dirname, "../../client/build"), "index.html"),
+    path.join(path.join(__dirname, "../../client"), "index.html"),
   );
 });
 
