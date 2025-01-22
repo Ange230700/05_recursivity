@@ -1,5 +1,7 @@
 // src/javascript/document/manipulation.js
 
+import { generateFooter } from "../components/functional.js";
+
 /**
  * Builds a DOM structure of nested <details> (accordions) for folder data
  * and <li> elements for files. Each folder is a <details> with a <summary>,
@@ -85,4 +87,31 @@ function buildFolderStructure(folderData, container) {
   container.appendChild(accordion);
 }
 
-export { buildFolderStructure };
+/**
+ * Replaces the old recursive console-based approach by calling the
+ * DOM-based function from 'manipulation.js'.
+ */
+function printExhaustiveFolderContentUsingRecursion(folderData) {
+  // Instead of printing to console, delegate to DOM construction:
+  const appContainer = document.getElementById("app");
+
+  // Clear the container or handle if you prefer
+  appContainer.innerHTML = "";
+
+  buildFolderStructure(folderData, appContainer);
+
+  appContainer.innerHTML += `${generateFooter()}`;
+}
+
+async function displayApp() {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/folder`);
+    const folderData = await response.json();
+
+    printExhaustiveFolderContentUsingRecursion(folderData);
+  } catch (error) {
+    console.error("Failed to fetch folder structure:", error);
+  }
+}
+
+export { displayApp };
